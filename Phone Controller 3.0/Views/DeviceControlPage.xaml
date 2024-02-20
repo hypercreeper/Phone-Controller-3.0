@@ -1,0 +1,118 @@
+﻿<Page
+    x:Class="Phone_Controller_3._0.Views.DeviceControlPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Loaded="Page_Loaded">
+    <StackPanel x:Name="ContentArea" Orientation="Vertical">
+        <StackPanel Width="500" Orientation="Vertical" x:Name="alertBox" Visibility="Collapsed" Background="Red">
+            <TextBlock x:Name="alertWarningLabel"></TextBlock>
+            <ProgressBar x:Name="adbDownloadBar" Minimum="0" Maximum="100" Value="0" IsIndeterminate="False"></ProgressBar>
+            <TextBlock x:Name="adbDownloadStatus"></TextBlock>
+            <Button x:Name="DownloadADBBtn">Download</Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel>
+                <TextBlock Text="Control"/>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Margin="140,0,0,0">
+                        <Button Width="100" Height="65" Click="MoveUpButton_Click">Move Up</Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,20,0,20">
+                        <Button Width="100" Height="65" Margin="20,0,20,0" Click="MoveLeftButton_Click">Move Left</Button>
+                        <Button Width="100" Height="65" Click="EnterButton_Click">Enter</Button>
+                        <Button Width="100" Height="65" Margin="20,0,20,0" Click="MoveRightButton_Click">Move Right</Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="140,0,0,0">
+                        <Button Width="100" Height="65" Click="MoveDownButton_Click">Move Down</Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <Button Width="100" Height="65" Margin="20,0,0,0" Click="RecentsButton_Click">Recents</Button>
+                        <Button Width="100" Height="65" Margin="20,0,0,0" Click="HomeButton_Click">Home</Button>
+                        <Button Width="100" Height="65" Margin="20,0,0,0" Click="BackButton_Click">Back</Button>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="Media" Margin="10,0,0,0"/>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical">
+                        <Button Width="100" Height="65" Margin="10,10,0,0" Click="VolUpButton_Click">Vol Up</Button>
+                        <Button Width="100" Height="65" Margin="10,10,0,0" Click="MuteButton_Click">Mute</Button>
+                        <Button Width="100" Height="65" Margin="10,10,0,0" Click="VolDownButton_Click">Vol Down</Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <Button Width="100" Height="65" Margin="10,10,0,0" Click="NextButton_Click">Next</Button>
+                        <Button Width="100" Height="65" Margin="10,10,0,0" Click="PlayPauseButton_Click">Pause/Play</Button>
+                        <Button Width="100" Height="65" Margin="10,10,0,0" Click="PreviousButton_Click">Previous</Button>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="Power" Margin="10,0,0,0"/>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical">
+                        <Button Width="100" Height="65" Margin="10,10,0,0" Click="PowerButton_Click">Power</Button>
+                        <Button Width="100" Height="65" Margin="10,10,0,0" Click="CameraButton_Click">Camera</Button>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Reboot" Margin="10,0,0,0"/>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical">
+                        <Button Width="100" Height="65" Margin="10,10,0,0" Click="RebootButton_Click">
+                            <Button.Content>
+                                <TextBlock TextWrapping="Wrap">
+                                    Reboot
+                                </TextBlock>
+                            </Button.Content>
+                        </Button>
+                        <Button Width="100" Height="65" Margin="10,10,0,0" Click="RebootRecoveryButton_Click">
+                            <Button.Content>
+                                <TextBlock TextWrapping="Wrap">
+                                    Reboot to Recovery
+                                </TextBlock>
+                            </Button.Content>
+                        </Button>
+                        <Button Width="100" Height="65" Margin="10,10,0,0" Click="RebootBootloaderButton_Click">
+                            <Button.Content>
+                                <TextBlock TextWrapping="Wrap">
+                                    Reboot to Bootloader
+                                </TextBlock>
+                            </Button.Content>
+                        </Button>
+                        <Button Width="100" Height="65" Margin="10,10,0,0" Click="RebootSideloadButton_Click">
+                            <Button.Content>
+                                <TextBlock TextWrapping="Wrap">
+                                    Reboot to Sideload
+                                </TextBlock>
+                            </Button.Content>
+                        </Button>
+
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Keyboard" Margin="0,10,0,0"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="keyboardBox" Width="370" Height="30" Margin="0,0,0,0" VerticalAlignment="Center"></TextBox>
+                    <Button Width="75" Height="45" Margin="5,10,0,0" VerticalAlignment="Center" Click="SendKeyboardButton_Click">Send</Button>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Send Password" Margin="10,10,0,0"/>
+                <StackPanel Orientation="Horizontal">
+                    <PasswordBox x:Name="passwordBox" Width="370" Margin="10,0,0,0" VerticalAlignment="Center"></PasswordBox>
+                    <Button Width="75" Height="45" Margin="5,10,0,0" VerticalAlignment="Center" Click="SendPasswordButton_Click">Submit</Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</Page>

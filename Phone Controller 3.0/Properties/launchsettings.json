@@ -1,0 +1,10 @@
+﻿{
+    "profiles": {
+      "Phone Controller 3.0 (Package)": {
+        "commandName": "MsixPackage"
+      },
+      "Phone Controller 3.0 (Unpackaged)": {
+        "commandName": "Project"
+      }
+    }
+}

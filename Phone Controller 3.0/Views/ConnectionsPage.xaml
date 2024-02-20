@@ -1,0 +1,76 @@
+﻿<Page
+    x:Class="Phone_Controller_3._0.Views.ConnectionsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <StackPanel Orientation="Vertical" x:Name="ContentArea">
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Margin="0,0,0,10">Connections</TextBlock>
+                <Button x:Name="usbConnectBtn" Click="usbConnectBtn_Click">Reconnect USB</Button>
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                    <ComboBox x:Name="IPPortConnectBox" VerticalAlignment="Center" IsEditable="True" PlaceholderText="IP Address ip:port" Margin="0,0,10,0" MinWidth="200">
+                        <ComboBox.Items>
+                            <ComboBoxItem Content="Connect WSA"></ComboBoxItem>
+                        </ComboBox.Items>
+                    </ComboBox>
+                    <Button x:Name="IPPortConnectBtn" Click="IPPortConnectBtn_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <ProgressRing IsIndeterminate="True" Visibility="Collapsed" Margin="0,0,10,0" x:Name="IPPortProgressIndicator"></ProgressRing>
+                            <TextBlock VerticalAlignment="Center">Connect Wireless</TextBlock>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                    <ComboBox x:Name="PairDeviceIPBox" IsEditable="True" VerticalAlignment="Center" PlaceholderText="IP Address" Margin="0,0,10,0" MinWidth="200">
+                        <ComboBox.Items>
+                            <ComboBoxItem Content="Connect WSA"></ComboBoxItem>
+                        </ComboBox.Items>
+                    </ComboBox>
+                    <ComboBox x:Name="PairDevicePortBox" IsEditable="True" VerticalAlignment="Center" PlaceholderText="Port" Margin="0,0,10,0" MinWidth="50"></ComboBox>
+                    <TextBox x:Name="PairDeviceCodeBox" PlaceholderText="Pairing Code" VerticalAlignment="Center" Margin="0,0,10,0" MaxHeight="10" MinWidth="100"/>
+                    <Button x:Name="PairDeviceBtn" Click="PairDeviceBtn_Click" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <ProgressRing IsIndeterminate="True" Visibility="Collapsed" Margin="0,0,10,0" x:Name="PairDeviceProgressIndicator"></ProgressRing>
+                            <TextBlock VerticalAlignment="Center">Pair With Code</TextBlock>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+                <Button Margin="0,20,0,0" x:Name="PairDeviceWithQRCode">Pair With QR Code</Button>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="20,0,0,0">
+                <TextBlock Margin="0,0,0,10">ADB Server</TextBlock>
+                <Button x:Name="StartServerBtn" Margin="0,0,0,10" Background="Lime" Click="StartServerBtn_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <ProgressRing IsIndeterminate="True" Visibility="Collapsed" Margin="0,0,10,0" x:Name="StartServerProgressIndicator"></ProgressRing>
+                        <TextBlock VerticalAlignment="Center">Start Server</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="StopServerBtn" Background="Red" Click="StopServerBtn_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <ProgressRing IsIndeterminate="True" Visibility="Collapsed" Margin="0,0,10,0" x:Name="StopServerProgressIndicator"></ProgressRing>
+                        <TextBlock VerticalAlignment="Center">Stop Server</TextBlock>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="50,0,0,0">
+                <TextBlock Margin="0,0,0,10">Connected Devices</TextBlock>
+                <Button x:Name="RefreshConnectedDevicesList" HorizontalAlignment="Center" Margin="0,0,0,10" Width="200" Click="RefreshConnectedDevicesList_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <ProgressRing IsIndeterminate="True" Visibility="Collapsed" Margin="0,0,10,0" x:Name="RefreshConnectedDevicesProgressIndicator"></ProgressRing>
+                        <TextBlock VerticalAlignment="Center">Refresh List</TextBlock>
+                    </StackPanel>
+                </Button>
+                <ScrollViewer HorizontalScrollBarVisibility="Visible" HorizontalScrollMode="Enabled" MaxWidth="270">
+                    <ListView x:Name="ConnectedDevicesList">
+                        <ListViewHeaderItem>Devices</ListViewHeaderItem>
+                    </ListView>
+                </ScrollViewer>
+            </StackPanel>
+        </StackPanel>
+        <TextBox IsReadOnly="True" x:Name="ConnectionsLog" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="100"></TextBox>
+    </StackPanel>
+</Page>
