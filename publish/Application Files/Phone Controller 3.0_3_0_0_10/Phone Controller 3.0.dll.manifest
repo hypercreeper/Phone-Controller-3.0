@@ -837,15 +837,6 @@
       <dsig:DigestValue>rVyXdFb2A1ch7Ldam7ktGFnNTrE=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Microsoft.WindowsAppRuntime.Bootstrap.dll" size="197664">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>rVyXdFb2A1ch7Ldam7ktGFnNTrE=</dsig:DigestValue>
-    </hash>
-  </file>
   <file name="Microsoft.WindowsAppRuntime.Bootstrap.Net.dll" size="16832">
     <hash>
       <dsig:Transforms>
@@ -853,6 +844,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>n4D7hmaRpPGCyMhWjaD+KpAZoAc=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Microsoft.WindowsAppRuntime.Bootstrap.second.dll" size="197664">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>rVyXdFb2A1ch7Ldam7ktGFnNTrE=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Microsoft.WindowsAppRuntime.dll" size="1330216">
