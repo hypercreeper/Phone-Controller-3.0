@@ -17,8 +17,24 @@
     <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
     <AssemblyName></AssemblyName>
     <SignAssembly>True</SignAssembly>
+    <GenerateAppInstallerFile>True</GenerateAppInstallerFile>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+    <PackageCertificateThumbprint>D75B046F20051D3756E977BDA3AF5910EB67879A</PackageCertificateThumbprint>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <AppxBundle>Never</AppxBundle>
+    <AppInstallerUri>https://raw.githubusercontent.com/hypercreeper/Phone-Controller-3.0/master/publish</AppInstallerUri>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Images\LockScreenLogo.scale-200.png" />
+    <None Remove="Images\SplashScreen.scale-200.png" />
+    <None Remove="Images\Square150x150Logo.scale-200.png" />
+    <None Remove="Images\Square44x44Logo.scale-200.png" />
+    <None Remove="Images\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <None Remove="Images\Wide310x150Logo.scale-200.png" />
+    <None Remove="Images\WindowIcon.ico" />
     <None Remove="Assets\LockScreenLogo.scale-200.png" />
     <None Remove="Assets\SplashScreen.scale-200.png" />
     <None Remove="Assets\Square150x150Logo.scale-200.png" />
@@ -26,6 +42,16 @@
     <None Remove="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <None Remove="Assets\StoreLogo.png" />
     <None Remove="Assets\Wide310x150Logo.scale-200.png" />
+    <None Remove="Package.appxmanifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\LockScreenLogo.scale-200.png" />
+    <Content Include="Images\SplashScreen.scale-200.png" />
+    <Content Include="Images\Square150x150Logo.scale-200.png" />
+    <Content Include="Images\Square44x44Logo.scale-200.png" />
+    <Content Include="Images\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Images\Wide310x150Logo.scale-200.png" />
+    <Content Include="Images\WindowIcon.ico" />
   </ItemGroup>
 
   <ItemGroup>
