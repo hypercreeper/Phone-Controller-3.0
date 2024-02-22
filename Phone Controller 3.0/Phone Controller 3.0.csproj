@@ -26,6 +26,7 @@
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
     <AppxBundle>Never</AppxBundle>
     <AppInstallerUri>https://raw.githubusercontent.com/hypercreeper/Phone-Controller-3.0/master/publish</AppInstallerUri>
+    <AppxPackageDir>C:\Users\hyper\source\repos\Phone Controller 3.0\publish\</AppxPackageDir>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Images\LockScreenLogo.scale-200.png" />

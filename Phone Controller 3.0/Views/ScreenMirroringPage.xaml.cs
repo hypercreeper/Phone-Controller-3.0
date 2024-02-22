@@ -72,7 +72,7 @@ public sealed partial class ScreenMirroringPage : Page
     {
         ViewModel = App.GetService<ScreenMirroringViewModel>();
         InitializeComponent();
-        scrcpypath = Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/scrcpy/scrcpy-win64-v2.3.1/scrcpy.exe";
+        scrcpypath = ApplicationData.Current.RoamingFolder.Path + "/Assets/scrcpy/scrcpy-win64-v2.3.1/scrcpy.exe";
         checkForScrcpy();
     }
 
@@ -131,12 +131,12 @@ public sealed partial class ScreenMirroringPage : Page
     {
         scrcpyDownloadStatus.Text = "Extracting scrcpy...";
         scrcpyDownloadBar.IsIndeterminate = true;
-        Directory.CreateDirectory(Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/temp/scrcpy");
-        System.IO.Compression.ZipFile.ExtractToDirectory(Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/temp/scrcpy-win64-v2.3.1.zip", Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/temp/scrcpy");
+        Directory.CreateDirectory(ApplicationData.Current.RoamingFolder.Path + "/Assets/temp/scrcpy");
+        System.IO.Compression.ZipFile.ExtractToDirectory(ApplicationData.Current.RoamingFolder.Path + "/Assets/temp/scrcpy-win64-v2.3.1.zip", ApplicationData.Current.RoamingFolder.Path + "/Assets/temp/scrcpy");
         scrcpyDownloadStatus.Text = "Preparing scrcpy...";
-        Directory.Move(Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/temp/scrcpy", Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/scrcpy");
+        Directory.Move(ApplicationData.Current.RoamingFolder.Path + "/Assets/temp/scrcpy", ApplicationData.Current.RoamingFolder.Path + "/Assets/scrcpy");
         scrcpyDownloadStatus.Text = "Cleaning Up...";
-        Directory.Delete(Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/temp", true);
+        Directory.Delete(ApplicationData.Current.RoamingFolder.Path + "/Assets/temp", true);
         scrcpyDownloadBar.Visibility = Visibility.Collapsed;
         scrcpyDownloadStatus.Visibility = Visibility.Collapsed;
         checkForScrcpy();
@@ -147,10 +147,10 @@ public sealed partial class ScreenMirroringPage : Page
         scrcpyDownloadStatus.Visibility = Visibility.Visible;
         scrcpyDownloadStatus.Text = "Deleting scrcpy Folder...";
         scrcpyDownloadBar.IsIndeterminate = true;
-        if(Directory.Exists(Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/scrcpy"))
-            Directory.Delete(Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/scrcpy", true );
+        if(Directory.Exists(ApplicationData.Current.RoamingFolder.Path + "/Assets/scrcpy"))
+            Directory.Delete(ApplicationData.Current.RoamingFolder.Path + "/Assets/scrcpy", true );
         scrcpyDownloadStatus.Text = "Creating temp Folder...";
-        var tempDir = Directory.CreateDirectory(Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/temp");
+        var tempDir = Directory.CreateDirectory(ApplicationData.Current.RoamingFolder.Path + "/Assets/temp");
         scrcpyDownloadStatus.Text = "Starting Download...";
         scrcpyDownloadBar.IsIndeterminate = false;
         using (WebClient wc = new WebClient())
@@ -161,7 +161,7 @@ public sealed partial class ScreenMirroringPage : Page
                 // Param1 = Link of file
                 new System.Uri("https://github.com/Genymobile/scrcpy/releases/download/v2.3.1/scrcpy-win64-v2.3.1.zip"),
                 // Param2 = Path to save
-                Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/temp/scrcpy-win64-v2.3.1.zip"
+                ApplicationData.Current.RoamingFolder.Path + "/Assets/temp/scrcpy-win64-v2.3.1.zip"
             );
         }
     }

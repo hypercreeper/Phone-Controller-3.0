@@ -8,6 +8,7 @@ using Windows.ApplicationModel.Contacts;
 using Windows.ApplicationModel.DataTransfer;
 using System.Diagnostics;
 using Windows.Media.PlayTo;
+using Windows.Storage;
 
 namespace Phone_Controller_3._0.Views;
 
@@ -57,7 +58,7 @@ public sealed partial class FileExplorerPage : Page
     {
         if (sourceType == SourceType.REMOTE || sourceType == 5)
         {
-            var startinfo = new ProcessStartInfo() { FileName = Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
+            var startinfo = new ProcessStartInfo() { FileName = ApplicationData.Current.RoamingFolder.Path + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
             startinfo.Arguments = "-s " + ConnectionsPage.defaultDevice + " shell ls '" + RemotePath.Text + "'";
             new Thread(delegate ()
             {
@@ -110,7 +111,7 @@ public sealed partial class FileExplorerPage : Page
     }
     private void PullFileBtn_Click(object sender, RoutedEventArgs e)
     {
-        var startinfo = new ProcessStartInfo() { FileName = Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
+        var startinfo = new ProcessStartInfo() { FileName = ApplicationData.Current.RoamingFolder.Path + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
         startinfo.Arguments = "-s " + ConnectionsPage.defaultDevice + " pull \"" + (RemoteFiles.SelectedItem as ListFile).FilePath + "\" \"" + (LocalFiles.SelectedItem as ListFile).FilePath + "\"";
         new Thread(delegate ()
         {
@@ -149,7 +150,7 @@ public sealed partial class FileExplorerPage : Page
 
     private void PushFileBtn_Click(object sender, RoutedEventArgs e)
     {
-        var startinfo = new ProcessStartInfo() { FileName = Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
+        var startinfo = new ProcessStartInfo() { FileName = ApplicationData.Current.RoamingFolder.Path + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
         startinfo.Arguments = "-s " + ConnectionsPage.defaultDevice + " push \"" + (LocalFiles.SelectedItem as ListFile).FilePath + "\" \"" + (RemoteFiles.SelectedItem as ListFile).FilePath + "\"";
         new Thread(delegate ()
         {
@@ -202,7 +203,7 @@ public sealed partial class FileExplorerPage : Page
         var result = await dialog.ShowAsync();
         if (result == ContentDialogResult.Secondary)
         {
-            var startinfo = new ProcessStartInfo() { FileName = Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
+            var startinfo = new ProcessStartInfo() { FileName = ApplicationData.Current.RoamingFolder.Path + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
             startinfo.Arguments = "-s " + ConnectionsPage.defaultDevice + " shell mkdir '" + RemotePath.Text + "/" + foldername.Text + "'";
             new Thread(delegate ()
             {
@@ -255,7 +256,7 @@ public sealed partial class FileExplorerPage : Page
         var result = await dialog.ShowAsync();
         if(result == ContentDialogResult.Secondary)
         {
-            var startinfo = new ProcessStartInfo() { FileName = Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
+            var startinfo = new ProcessStartInfo() { FileName = ApplicationData.Current.RoamingFolder.Path + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
             startinfo.Arguments = "-s " + ConnectionsPage.defaultDevice + " shell rm -r '" + (RemoteFiles.SelectedItem as ListFile).FilePath + "'";
             new Thread(delegate ()
             {

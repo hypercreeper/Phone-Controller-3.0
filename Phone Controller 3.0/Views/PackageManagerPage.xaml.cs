@@ -27,7 +27,7 @@ public sealed partial class PackageManagerPage : Page
     {
         ((Button)sender).IsEnabled = false;
         UninstallProgressBar.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
-        var startinfo = new ProcessStartInfo() { FileName = Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
+        var startinfo = new ProcessStartInfo() { FileName = ApplicationData.Current.RoamingFolder.Path + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
         startinfo.Arguments = "-s " + ConnectionsPage.defaultDevice + " uninstall " + UninstallAppComboBox.Text;
         new Thread(delegate ()
         {
@@ -132,7 +132,7 @@ public sealed partial class PackageManagerPage : Page
         {
             ((Button)sender).IsEnabled = false;
             InstallAPKProgressBar.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
-            var startinfo = new ProcessStartInfo() { FileName = Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
+            var startinfo = new ProcessStartInfo() { FileName = ApplicationData.Current.RoamingFolder.Path + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
             if ((bool)APKInstallOverrideCheckbox.IsChecked)
             {
                 startinfo.Arguments = "-s " + ConnectionsPage.defaultDevice + " install -r '" + file.Path + "'";
@@ -213,7 +213,7 @@ public sealed partial class PackageManagerPage : Page
         {
             ((Button)sender).IsEnabled = false;
             SideloadProgressBar.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
-            var startinfo = new ProcessStartInfo() { FileName = Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
+            var startinfo = new ProcessStartInfo() { FileName = ApplicationData.Current.RoamingFolder.Path + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
             startinfo.Arguments = "-s " + ConnectionsPage.defaultDevice + " sideload '" + sideloadFile.Path + "'";
             new Thread(delegate ()
             {

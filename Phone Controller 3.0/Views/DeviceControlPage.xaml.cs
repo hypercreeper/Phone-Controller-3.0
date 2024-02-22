@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Phone_Controller_3._0.Helpers;
 using Phone_Controller_3._0.ViewModels;
+using Windows.Storage;
 
 namespace Phone_Controller_3._0.Views;
 
@@ -16,7 +17,7 @@ public sealed partial class DeviceControlPage : Page
     {
         get;
     }
-    static public ProcessStartInfo ADBProcessInfo = new ProcessStartInfo() { FileName=Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/platform-tools/adb", CreateNoWindow=true, UseShellExecute=false, RedirectStandardOutput=true, RedirectStandardError=true };
+    static public ProcessStartInfo ADBProcessInfo = new ProcessStartInfo() { FileName=ApplicationData.Current.RoamingFolder.Path + "/Assets/platform-tools/adb", CreateNoWindow=true, UseShellExecute=false, RedirectStandardOutput=true, RedirectStandardError=true };
 
     void wc_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
     {
@@ -27,11 +28,11 @@ public sealed partial class DeviceControlPage : Page
     {
         adbDownloadStatus.Text = "Extracting platform-tools...";
         adbDownloadBar.IsIndeterminate = true;
-        System.IO.Compression.ZipFile.ExtractToDirectory(Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/temp/platform-tools_r34.0.5-windows.zip", Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/temp");
+        System.IO.Compression.ZipFile.ExtractToDirectory(ApplicationData.Current.RoamingFolder.Path + "/Assets/temp/platform-tools_r34.0.5-windows.zip", ApplicationData.Current.RoamingFolder.Path + "/Assets/temp");
         adbDownloadStatus.Text = "Preparing platform-tools...";
-        Directory.Move(Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/temp/platform-tools", Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/platform-tools");
+        Directory.Move(ApplicationData.Current.RoamingFolder.Path + "/Assets/temp/platform-tools", ApplicationData.Current.RoamingFolder.Path + "/Assets/platform-tools");
         adbDownloadStatus.Text = "Cleaning Up...";
-        Directory.Delete(Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/temp", true);
+        Directory.Delete(ApplicationData.Current.RoamingFolder.Path + "/Assets/temp", true);
         adbDownloadBar.Visibility = Visibility.Collapsed;
         adbDownloadStatus.Visibility = Visibility.Collapsed;
         alertBox.Visibility = Visibility.Collapsed;
@@ -42,10 +43,10 @@ public sealed partial class DeviceControlPage : Page
         adbDownloadStatus.Visibility = Visibility.Visible;
         adbDownloadStatus.Text = "Deleting platform-tools Folder...";
         adbDownloadBar.IsIndeterminate = true;
-        if (Directory.Exists(Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/platform-tools"))
-            Directory.Delete(Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/platform-tools", true);
+        if (Directory.Exists(ApplicationData.Current.RoamingFolder.Path + "/Assets/platform-tools"))
+            Directory.Delete(ApplicationData.Current.RoamingFolder.Path + "/Assets/platform-tools", true);
         adbDownloadStatus.Text = "Creating temp Folder...";
-        var tempDir = Directory.CreateDirectory(Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/temp");
+        var tempDir = Directory.CreateDirectory(ApplicationData.Current.RoamingFolder.Path + "/Assets/temp");
         adbDownloadStatus.Text = "Starting Download...";
         adbDownloadBar.IsIndeterminate = false;
         using (WebClient wc = new WebClient())
@@ -56,7 +57,7 @@ public sealed partial class DeviceControlPage : Page
                 // Param1 = Link of file
                 new System.Uri("https://dl.google.com/android/repository/platform-tools_r34.0.5-windows.zip"),
                 // Param2 = Path to save
-                Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/temp/platform-tools_r34.0.5-windows.zip"
+                ApplicationData.Current.RoamingFolder.Path + "/Assets/temp/platform-tools_r34.0.5-windows.zip"
             );
         }
     }
@@ -71,7 +72,7 @@ public sealed partial class DeviceControlPage : Page
         senderBtn.IsEnabled = false;
         if(hasProgressBar)
             progressBar.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
-        var startinfo = new ProcessStartInfo() { FileName = Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
+        var startinfo = new ProcessStartInfo() { FileName = ApplicationData.Current.RoamingFolder.Path + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
         startinfo.Arguments = "-s " + ConnectionsPage.defaultDevice + " " + command;
 
 
@@ -219,7 +220,7 @@ public sealed partial class DeviceControlPage : Page
 
     private void Page_Loaded(object sender, RoutedEventArgs e)
     {
-        var startinfo = new ProcessStartInfo() { FileName = Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
+        var startinfo = new ProcessStartInfo() { FileName = ApplicationData.Current.RoamingFolder.Path + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
         startinfo.Arguments = "--version";
         new Thread(delegate ()
         {
@@ -250,7 +251,7 @@ public sealed partial class DeviceControlPage : Page
                         {
                             if (ConnectionsPage.defaultDevice == "")
                             {
-                                var startinfo = new ProcessStartInfo() { FileName = Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
+                                var startinfo = new ProcessStartInfo() { FileName = ApplicationData.Current.RoamingFolder.Path + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
                                 startinfo.Arguments = "devices";
                                 var thread = new Thread(delegate ()
                                 {
@@ -299,7 +300,7 @@ public sealed partial class DeviceControlPage : Page
                             }
                             else
                             {
-                                var startinfo = new ProcessStartInfo() { FileName = Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
+                                var startinfo = new ProcessStartInfo() { FileName = ApplicationData.Current.RoamingFolder.Path + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
                                 startinfo.Arguments = "devices";
                                 new Thread(delegate ()
                                 {

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.UI.Xaml.Controls;
 using Phone_Controller_3._0.Views;
 using Windows.Devices.Bluetooth.Advertisement;
+using Windows.Storage;
 
 namespace Phone_Controller_3._0
 {
@@ -39,7 +40,7 @@ namespace Phone_Controller_3._0
                     try
                     {
                         var file = new DirectoryInfo(this.FilePath);
-                        if (File.GetAttributes(this.FilePath).HasFlag(FileAttributes.Directory))
+                        if (File.GetAttributes(this.FilePath).HasFlag(System.IO.FileAttributes.Directory))
                         {
                             return true;
                         }
@@ -55,7 +56,7 @@ namespace Phone_Controller_3._0
                 }
                 else
                 {
-                    var startinfo = new ProcessStartInfo() { FileName = Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
+                    var startinfo = new ProcessStartInfo() { FileName = ApplicationData.Current.RoamingFolder.Path + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
                     startinfo.Arguments = "-s " + ConnectionsPage.defaultDevice + " shell ls '" + this.FilePath + "'";
                     var process = Process.Start(startinfo);
                     process.WaitForExit();

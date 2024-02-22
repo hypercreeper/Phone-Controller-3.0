@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Animation;
 using Phone_Controller_3._0.Models;
 using Phone_Controller_3._0.ViewModels;
+using Windows.Storage;
 
 namespace Phone_Controller_3._0.Views;
 
@@ -24,7 +25,7 @@ public sealed partial class ConnectionsPage : Page
     public static string defaultDevice = "";
     private void usbConnectBtn_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-        var startinfo = new ProcessStartInfo() { FileName = Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
+        var startinfo = new ProcessStartInfo() { FileName = ApplicationData.Current.RoamingFolder.Path + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
         startinfo.Arguments = "usb";
         new Thread(delegate ()
         {
@@ -56,7 +57,7 @@ public sealed partial class ConnectionsPage : Page
         {
             previouslyConnectedIPs = previouslyConnectedIPs.Append(IPPortConnectBox.Text).ToArray();
         }
-        var startinfo = new ProcessStartInfo() { FileName = Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
+        var startinfo = new ProcessStartInfo() { FileName = ApplicationData.Current.RoamingFolder.Path + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
         if (IPPortConnectBox.Text == "Connect WSA")
         {
             startinfo.Arguments = "connect localhost:58526";
@@ -130,7 +131,7 @@ public sealed partial class ConnectionsPage : Page
         {
             PreviouslyConnectedPairedDevices.Append(new PairDeviceInfo(PairDeviceIPBox.Text, PairDevicePortBox.Text, PairDeviceCodeBox.Text));
         }
-        var startinfo = new ProcessStartInfo() { FileName = Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
+        var startinfo = new ProcessStartInfo() { FileName = ApplicationData.Current.RoamingFolder.Path + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
         startinfo.Arguments = "pair " + PairDeviceIPBox.Text + ":" + PairDevicePortBox.Text + " " + PairDeviceCodeBox.Text;
         var ips = new string[] { };
         var ports = new string[] { };
@@ -201,7 +202,7 @@ public sealed partial class ConnectionsPage : Page
 
     private void StartServerBtn_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-        var startinfo = new ProcessStartInfo() { FileName = Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
+        var startinfo = new ProcessStartInfo() { FileName = ApplicationData.Current.RoamingFolder.Path + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
         startinfo.Arguments = "start-server";
         new Thread(delegate ()
         {
@@ -248,7 +249,7 @@ public sealed partial class ConnectionsPage : Page
 
     private void StopServerBtn_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-        var startinfo = new ProcessStartInfo() { FileName = Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
+        var startinfo = new ProcessStartInfo() { FileName = ApplicationData.Current.RoamingFolder.Path + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
         startinfo.Arguments = "kill-server";
         new Thread(delegate ()
         {
@@ -295,7 +296,7 @@ public sealed partial class ConnectionsPage : Page
 
     private void RefreshConnectedDevicesList_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-        var startinfo = new ProcessStartInfo() { FileName = Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
+        var startinfo = new ProcessStartInfo() { FileName = ApplicationData.Current.RoamingFolder.Path + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
         startinfo.Arguments = "devices";
         new Thread(delegate ()
         {
@@ -392,7 +393,7 @@ public sealed partial class ConnectionsPage : Page
     private void DisconnectDeviceButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
         var btn = (sender as Button);
-        var startinfo = new ProcessStartInfo() { FileName = Windows.ApplicationModel.Package.Current.InstalledPath + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
+        var startinfo = new ProcessStartInfo() { FileName = ApplicationData.Current.RoamingFolder.Path + "/Assets/platform-tools/adb", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
         startinfo.Arguments = "disconnect " + btn.Tag;
         new Thread(delegate ()
         {

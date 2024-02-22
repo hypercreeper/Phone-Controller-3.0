@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppInstaller
+	Uri="https://raw.githubusercontent.com/hypercreeper/Phone-Controller-3.0/master/publish/Phone Controller 3.0_x86.appinstaller"
+	Version="3.1.29.0" xmlns="http://schemas.microsoft.com/appx/appinstaller/2017/2">
+	<MainPackage
+		Name="Phone-Controller-3.0"
+		Version="3.1.29.0"
+		Publisher="CN=Mohamad Moukayed"
+		Uri="https://raw.githubusercontent.com/hypercreeper/Phone-Controller-3.0/master/publish/Phone Controller 3.0_3.1.29.0_x86_Test/Phone Controller 3.0_3.1.29.0_x86.msix"
+		ProcessorArchitecture="x86" />
+	<!-- Read more about updating settings with Package.appinstaller at https://docs.microsoft.com/windows/msix/app-installer/update-settings -->
+	<UpdateSettings>
+		<OnLaunch
+			HoursBetweenUpdateChecks="0" />
+	</UpdateSettings>
+</AppInstaller>
